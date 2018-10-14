@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Greenheart</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP:200,300,400,500,600,700,900|Playfair+Display+SC:900i&subset=japanese');
+		
+		.square{width:120px; height:120px; background:#0F4A45; margin:5px; color:white; position:absolute; top:20px; animation:drop 1s infinite;}
+		body{background-color:#CEDCCB}
+		#text1{position:absolute; left:50%; margin-left:-380px; font-family: 'Playfair Display SC', serif; font-size:96pt; text-align:center}
+		#text2{width:770px; height:270px; padding:20px; position:absolute; top:330px; left:650px; font-family: 'Noto Serif JP', sans-serif; font-weight:900; font-size:96pt;}
+		#box{width:635px; height:350px; position:absolute; top:360px; left:680px; background-color:red;}
+
+		#imge{width:350px; height:350px; position:absolute; top:200px; left:50%; margin-left:-185px; border:3px solid;  display: table-cell; text-align:center; vertical-align:middle;}
+		#he{width:700px; height:auto; margin:-220px; margin-left:-300px;cursor:pointer}
+		
+		#name2 {width:450px; height:160px;position:absolute;top:160px;left:950px;background-color:hsla(0,0%,13%,0.75);color:white;font-size:32pt; padding:10px;font-family: 'Noto Serif JP', sans-serif; font-weight:500;}
+		#sol {position:absolute; left:250px;}
+		
+		@keyframes drop{from{margin-top:95px; background-color:#0F4A45;} 80%{background-color:#0F4A45;} to{margin-top:20px; background-color:red;}
+	</style>
+</head>
+
+<body>
+	<div id="mu1">
+		<audio id="mu" src="img/mu.wav" autoplay="" loop="" preload="auto"></audio>
+	</div>
+	<div id="sol"  style="width: 0px;">
+	<img id="so" src="./img/so.gif" style="width: 0px; height: 0px; transition: all 1s">
+	</div>
+	
+	<div id="box"></div>
+	
+	<div id="text2">
+	骨折り損の<br>くたびれ儲け
+	</div>
+	
+	<div id="imge">
+	<img id="he" src="img/he.gif" >
+	</div>
+	
+	<div id="text1">
+	DRUDGERY
+	</div>
+	
+	<div id="square"></div>
+	<div id = "name2">公衆泥棒<br>曲線と透過光</div>
+
+	
+<script type="text/javascript">
+	
+		var text="이 밤 그렇게 멀어져  더 깊은 곳, 그곳으로 떨어져  아, 어느 방향으로 가야 하는지  속삭이듯 부는 엷은 바람이  대체 무슨 말, 말이 하고 싶은건지  불현듯 스쳐가는 기억에 입 다무네  오, 입 꼭 다무네  유혹하던 상처들 싸그리 모은 난 알수록 뻐근해져  여기 있기엔 너무 지쳤어  아무래도, 아무래도, 아무리 생각해봐도...  앞이 안 보여서 휘청거릴 수도 있어  휘청거리기도 했어  괜찮겠어?  오, 나에게 널 맡겨줘  비 내려도, 쓸려가도 되짚을 수 있을 거야  손에 손을 잡고,  흐트러짐 맞이하고…  괜찮겠어!  오 시간이 뭉개버릴, 우리 모두 가루가 돼  가루가 되기 전에 잠시 눈뜬 순간들  같이 푸는 거 어떨까?  어떻겠어?  Oh in the end,  we'll be colours swimming along,  diving the deep, reaching no bottom at all  따라 내려올 빛, 항상 닿을 수 있는 빛,  그 품안에서.";
+	
+
+		var newText = text.split("  ");
+		for(var i=0; i < newText.length; i++){
+			var a = document.getElementById("square")
+			var b = a.cloneNode(true);
+			b.innerHTML = newText[i];
+			b.className = "square";
+			b.id="a"+i;
+			b.style.left=15*i + "px";
+			b.style.top =20*i + "px";
+			b.style.animationDelay = i*0.1 + "s";
+			b.onclick=function(){
+				var d = document.getElementById(this.id);
+				console.log(d.innerHTML);
+				name2.innerHTML = d.innerHTML;
+			}
+			document.body.appendChild(b);}
+
+		
+		console.log(newText);
+
+		var currentname2 = 1;
+
+		he.onclick = function(){
+			if(currentname2 == 1){
+				document.getElementById("name2").innerHTML = "空の頭";
+				so.style.width = "1000px";
+				so.style.height = "auto";
+				mu.play();
+				currentname2 = 2;
+			}else if(currentname2 == 2){
+				document.getElementById("name2").innerHTML = "低い脈拍";
+				so.style.width = "0px";
+				so.style.height = "0px";
+				currentname2 = 3;
+				mu.pause();
+			}else if(currentname2 == 3){
+				document.getElementById("name2").innerHTML = "夜明け";
+				so.style.width = "1000px";
+				so.style.height = "auto";
+				mu.play();
+				currentname2 = 4;
+			}else if(currentname2 == 4){
+				document.getElementById("name2").innerHTML = "XXXXX";
+				so.style.width = "0px";
+				so.style.height = "0px";
+				mu.pause();
+				currentname2 = 1;
+			}
+		}
+	</script>
+</body>
+</html>
